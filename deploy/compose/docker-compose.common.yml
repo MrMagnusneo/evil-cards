@@ -1,12 +1,9 @@
 services:
   keydb:
-    image: eqalpha/keydb:x86_64_v6.3.3
-    volumes:
-      - ../keydb/keydb.conf:/usr/local/etc/keydb/keydb.conf
-    command: keydb-server /usr/local/etc/keydb/keydb.conf
+    image: redis:7-alpine
     restart: always
     healthcheck:
-      test: ["CMD", "keydb-cli", "ping"]
+      test: ["CMD", "redis-cli", "ping"]
       interval: 5s
       timeout: 10s
       retries: 3
